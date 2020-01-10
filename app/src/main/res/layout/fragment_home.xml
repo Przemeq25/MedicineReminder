@@ -32,19 +32,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
-
     <Button
         android:id="@+id/button5"
         android:layout_width="185dp"
@@ -58,4 +45,96 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3">
+
+        <TableLayout
+            android:id="@+id/table_main1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:width="500px"
+                    android:padding="3dip"
+                    android:text=" Konczące się leki"
+                    android:textColor="#673AB7"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:padding="3dip"
+                    android:text="Pozostałe tabletki"
+                    android:width="280px"
+                    android:textColor="#673AB7"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+                <TextView
+
+                    android:padding="3dip"
+                    android:width="250px"
+                    android:text="Brak"
+                    android:textColor="#673AB7"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </TableRow>
+
+
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
+
+            <ScrollView
+                android:id="@+id/scrollView1"
+                android:layout_width="fill_parent"
+                android:layout_height="385dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button5">
+
+                <HorizontalScrollView
+                    android:id="@+id/hscrll1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/RelativeLayout1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical">
+
+                        <TableLayout
+                            android:id="@+id/table_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        </TableLayout>
+                    </RelativeLayout>
+                </HorizontalScrollView>
+            </ScrollView>
+        </TableLayout>
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
