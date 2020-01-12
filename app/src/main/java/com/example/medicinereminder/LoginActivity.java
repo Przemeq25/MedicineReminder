@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class LoginActivity extends AppCompatActivity {
     private Button loginButton, signupButton;
     private EditText loginText, passwordText;
-
+    DataBaseController db = new DataBaseController();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +33,8 @@ public class LoginActivity extends AppCompatActivity {
                 {
 
                     Toast.makeText(LoginActivity.this, "Witaj " + loginText.getText().toString(), Toast.LENGTH_SHORT).show();
-                    AddMedicinesFragment fragment =  new AddMedicinesFragment();
-                    fragment.setName(loginText.getText().toString());
+
+                    db.setName(loginText.getText().toString());
                     Intent it = new Intent(LoginActivity.this, MainActivity.class);
                     it.putExtra("IDENT",loginText.getText().toString());
                     startActivity(it);
@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Wypełnij wszystkie pola", Toast.LENGTH_SHORT).show();
         }
-        if (DataBaseController.checkLoginData(user.getLogin(),user.getPassword())){
+        if (db.checkLoginData(user.getLogin(),user.getPassword())){
             validate = true;
         }
         else

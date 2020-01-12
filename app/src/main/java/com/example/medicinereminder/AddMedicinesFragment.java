@@ -19,9 +19,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -35,19 +37,14 @@ public class AddMedicinesFragment extends Fragment {
     private Button confirmButton;
     private Spinner dateMedSpinner;
     private EditText medNameET, nrOfTabET, medOneTimeET, dateEditText;
-    private Date date;
-    private User user;
+
 
     public AddMedicinesFragment() {
 
 
     }
 
-    public static String name= null;
 
-    public void setName(String string){
-        name = string;
-    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ((MainActivity) getActivity()).setActionBarTitle("Dodaj lek");
@@ -169,8 +166,16 @@ public class AddMedicinesFragment extends Fragment {
 
 
                     Medicine med = new Medicine(medName,nrOfTab,dateMed,medOneTime,dateOfFirstUse);
+                    HomeFragment hm = new HomeFragment();
+                    hm.list.add(med);
 
-                    DataBaseController.createMedicine(name,med.getNameMedicine(),med.getNrOfTablets(),med.getDateTakeMed(),med.getNrOfTabletsOneTime(),med.getFirstTakeMedicine());
+                    DataBaseController.createMedicine(hm.list);
+                    //med.otherTablets(nrOfTab,dateMed,medOneTime,nrOfTab);
+                    //Medicine med1 = new Medicine(medName,nrOfTab,dateMed,medOneTime,dateOfFirstUse, med.getDateOfLastUse(),med.getOtherTablets());
+
+                    //DataBaseController.createMedicine(name,med.getNameMedicine(),med.getNrOfTablets(),med.getDateTakeMed(),med.getNrOfTabletsOneTime(),med.getFirstTakeMedicine(),med.getDateOfLastUse());
+
+                    //DataBaseController.updateMedicine(name,med.getNameMedicine(),med.getDateOfLastUse(),med.substractTablets(nrOfTab,medOneTime));
                     Toast.makeText(getActivity(),"Poprawnie dodano lek",Toast.LENGTH_SHORT).show();
                     medNameET.getText().clear();
                     nrOfTabET.getText().clear();
@@ -188,7 +193,6 @@ public class AddMedicinesFragment extends Fragment {
     private Boolean validate(){
         Boolean validate = false;
 
-        int dateMed = Integer.parseInt(dateMedSpinner.getSelectedItem().toString());
         String nrOfTab = nrOfTabET.getText().toString();
         String medName = medNameET.getText().toString();
         String medOneTime = medOneTimeET.getText().toString();

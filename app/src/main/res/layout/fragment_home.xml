@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/pokButton"
         android:layout_width="185dp"
         android:layout_height="55dp"
         android:layout_marginStart="20dp"
@@ -43,7 +43,7 @@
         android:layout_marginRight="20dp"
         android:text="Pokaż informacje"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintStart_toEndOf="@+id/pokButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -58,7 +58,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3">
+        app:layout_constraintTop_toBottomOf="@+id/pokButton">
 
         <TableLayout
             android:id="@+id/table_main1"
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:width="500px"
                     android:padding="3dip"
-                    android:text=" Konczące się leki"
+                    android:text="Twoje leki"
                     android:textColor="#673AB7"
                     android:textSize="18dp"
                     android:textStyle="bold" />

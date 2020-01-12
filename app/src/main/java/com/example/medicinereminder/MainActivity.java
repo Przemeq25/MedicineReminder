@@ -13,10 +13,10 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private User user;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity
         ft.commit();
 
         navigationView.setCheckedItem(R.id.nav_home);
+
     }
 
     public void setActionBarTitle(String title){
