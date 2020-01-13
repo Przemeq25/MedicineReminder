@@ -21,120 +21,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/pokButton"
-        android:layout_width="185dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="80dp"
-        android:text="Pokaż leki"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="185dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:text="Pokaż informacje"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pokButton"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
+    <ListView
+        android:id="@+id/lista1"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_height="564dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pokButton">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.52"
+        tools:layout_editor_absoluteX="8dp">
 
-        <TableLayout
-            android:id="@+id/table_main1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <TableRow>
-
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:width="500px"
-                    android:padding="3dip"
-                    android:text="Twoje leki"
-                    android:textColor="#673AB7"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
-
-                <TextView
-
-                    android:padding="3dip"
-                    android:text="Pozostałe tabletki"
-                    android:width="280px"
-                    android:textColor="#673AB7"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
-                <TextView
-
-                    android:padding="3dip"
-                    android:width="250px"
-                    android:text="Brak"
-                    android:textColor="#673AB7"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
-            </TableRow>
+    </ListView>
 
 
-            <View
-                android:layout_height="2dip"
-                android:background="#FF909090" />
-
-            <ScrollView
-                android:id="@+id/scrollView1"
-                android:layout_width="fill_parent"
-                android:layout_height="385dp"
-                android:layout_alignParentLeft="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button5">
-
-                <HorizontalScrollView
-                    android:id="@+id/hscrll1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                    <RelativeLayout
-                        android:id="@+id/RelativeLayout1"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:orientation="vertical">
-
-                        <TableLayout
-                            android:id="@+id/table_main"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                        </TableLayout>
-                    </RelativeLayout>
-                </HorizontalScrollView>
-            </ScrollView>
-        </TableLayout>
-    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

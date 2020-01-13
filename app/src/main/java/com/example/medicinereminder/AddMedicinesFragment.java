@@ -167,9 +167,9 @@ public class AddMedicinesFragment extends Fragment {
 
                     Medicine med = new Medicine(medName,nrOfTab,dateMed,medOneTime,dateOfFirstUse);
                     HomeFragment hm = new HomeFragment();
-                    hm.list.add(med);
+                    //hm.list.add(med);
 
-                    DataBaseController.createMedicine(hm.list);
+                    //DataBaseController.createMedicine(hm.list);
                     //med.otherTablets(nrOfTab,dateMed,medOneTime,nrOfTab);
                     //Medicine med1 = new Medicine(medName,nrOfTab,dateMed,medOneTime,dateOfFirstUse, med.getDateOfLastUse(),med.getOtherTablets());
 
