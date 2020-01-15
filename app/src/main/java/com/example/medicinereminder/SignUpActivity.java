@@ -12,7 +12,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private Button loginButton,signupButton;
     private EditText loginText, passwordText;
-    DataBaseController db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
                 {
                     String login = loginText.getText().toString();
                     String password = passwordText.getText().toString();
-                    User user = new User(login,password);
-                    db.createUser(user.getLogin(),user.getPassword());
+                    DataBaseController.createUser(login,password);
                     Toast.makeText(SignUpActivity.this, "Rejestracja zakończona sukcesem", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                 }
@@ -61,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Hasło musi się składać z przynajmniej 4 znaków", Toast.LENGTH_SHORT).show();
         }
-        else if(db.checkUserExists(user.getLogin())){
+        else if(DataBaseController.checkUserExists(login)){
             Toast.makeText(this, "Uzytkownik o takim loginie juz istnieje", Toast.LENGTH_SHORT).show();
         }else{
             validate= true;

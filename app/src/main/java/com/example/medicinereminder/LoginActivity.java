@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     Toast.makeText(LoginActivity.this, "Witaj " + loginText.getText().toString(), Toast.LENGTH_SHORT).show();
 
+
                     db.setName(loginText.getText().toString());
                     Intent it = new Intent(LoginActivity.this, MainActivity.class);
                     it.putExtra("IDENT",loginText.getText().toString());

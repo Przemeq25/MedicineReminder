@@ -1,7 +1,6 @@
 package com.example.medicinereminder;
 
 
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -19,11 +18,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -54,7 +51,7 @@ public class AddMedicinesFragment extends Fragment {
         nrOfTabET = view.findViewById(R.id.nrOfTabET);
         medOneTimeET = view.findViewById(R.id.medOneTimeET);
         dateMedSpinner = view.findViewById(R.id.dateMedSpinner);
-        confirmButton = view.findViewById(R.id.confirmButton);
+        confirmButton = view.findViewById(R.id.confirmDataMedButton);
 
         TextWatcher tw = new TextWatcher() {
             private String current = "";
@@ -166,16 +163,10 @@ public class AddMedicinesFragment extends Fragment {
 
 
                     Medicine med = new Medicine(medName,nrOfTab,dateMed,medOneTime,dateOfFirstUse);
-                    HomeFragment hm = new HomeFragment();
-                    //hm.list.add(med);
+                    HomeFragment.listmed.add(med);
+                    DataBaseController.createMedicine(HomeFragment.listmed);
 
-                    //DataBaseController.createMedicine(hm.list);
-                    //med.otherTablets(nrOfTab,dateMed,medOneTime,nrOfTab);
-                    //Medicine med1 = new Medicine(medName,nrOfTab,dateMed,medOneTime,dateOfFirstUse, med.getDateOfLastUse(),med.getOtherTablets());
 
-                    //DataBaseController.createMedicine(name,med.getNameMedicine(),med.getNrOfTablets(),med.getDateTakeMed(),med.getNrOfTabletsOneTime(),med.getFirstTakeMedicine(),med.getDateOfLastUse());
-
-                    //DataBaseController.updateMedicine(name,med.getNameMedicine(),med.getDateOfLastUse(),med.substractTablets(nrOfTab,medOneTime));
                     Toast.makeText(getActivity(),"Poprawnie dodano lek",Toast.LENGTH_SHORT).show();
                     medNameET.getText().clear();
                     nrOfTabET.getText().clear();

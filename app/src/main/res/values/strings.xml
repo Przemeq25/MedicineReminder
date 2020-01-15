@@ -31,7 +31,7 @@
     <string name="date_medicine">Pora dawkowania(h): </string>
     <string name="how_meny_med_one_time">Ilość tabletek jednorazowo: </string>
     <string name="info_date">Powiadomienie o zbliżającej się porze zażycia leku</string>
-    <string name="info_end_medicines">Powiadomienie o kończących się lekach</string>
+    <string name="info_end_medicines">Uzupełnij lek:</string>
     <string name="take_medicine">Powinieneś spożyć lek: </string>
     <string name="number_of_tablets">Ilość tabletek: </string>
     <string name="date_of_first_use">Data pierwszego zażycia: </string>

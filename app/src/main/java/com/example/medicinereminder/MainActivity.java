@@ -1,7 +1,9 @@
 package com.example.medicinereminder;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -75,15 +78,19 @@ public class MainActivity extends AppCompatActivity
             android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new AddMedicinesFragment());
             ft.commit();
-        } else if (id == R.id.date_take_med) {
-            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.flMain, new DataMedicinesFragment());
-            ft.commit();
-        } else if (id == R.id.other_medicines) {
-            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.flMain, new OtherMedicinesFragment());
-            ft.commit();
-        }else if (id == R.id.exit) {
+        } //else if (id == R.id.date_take_med) {
+           // android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            //ft.replace(R.id.flMain, new DataMedicinesFragment());
+            //ft.commit();
+        //else if (id == R.id.other_medicines) {
+           // android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+           // ft.replace(R.id.flMain, new OtherMedicinesFragment());
+          //  ft.commit();
+       // }
+        else if (id == R.id.exit) {
+            DataBaseController.updateMedicine(HomeFragment.listmed);
+
+            this.finishAffinity();
 
         }
 

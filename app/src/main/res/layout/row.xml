@@ -4,13 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:gravity="top"
+    android:layout_margin="10dp"
+    android:padding="2dp"
+    android:background="@drawable/border_list"
    >
 
     <LinearLayout
-        android:layout_width="314dp"
+        android:layout_width="301dp"
         android:layout_height="60dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
+
         android:orientation="vertical">
 
         <TextView
@@ -70,7 +74,7 @@
             android:orientation="vertical">
 
             <Space
-                android:layout_width="88dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2" />
 
@@ -82,8 +86,8 @@
                 android:text="Zażyj" />
 
             <Space
-                android:layout_width="88dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
                 android:layout_weight="2" />
 
         </LinearLayout>

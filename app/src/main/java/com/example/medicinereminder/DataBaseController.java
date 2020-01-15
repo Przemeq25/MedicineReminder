@@ -1,6 +1,8 @@
 package com.example.medicinereminder;
 
+import android.os.Handler;
 import android.os.StrictMode;
+import android.widget.Adapter;
 import android.widget.Toast;
 
 import java.sql.Connection;
@@ -13,6 +15,8 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class DataBaseController {
 
@@ -22,13 +26,12 @@ public class DataBaseController {
     static final String PASS = "przemcio687";
 
 
-
     public static String login= null;
 
     public void setName(String string){
         login = string;
     }
-    public Boolean checkUserExists(String login) {
+    public static Boolean checkUserExists(String login) {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         Boolean userExists = false;
@@ -56,7 +59,7 @@ public class DataBaseController {
         return userExists;
     }
 
-    public void createUser(String login, String password) {
+    public static void createUser(String login, String password) {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         Connection connection = null;
@@ -148,8 +151,16 @@ public class DataBaseController {
             Statement stmt = connection.createStatement();
             String sql = "SELECT  medicine_name,nb_of_tablets,date_take,nb_of_tablets_one_time,date_of_first_use,date_of_last_use FROM medicine.medicines WHERE (select id_user from medicine.users where login='" +login+ "')=id_user;";
             ResultSet rs = stmt.executeQuery(sql);
+
             while(rs.next()){
-                Medicine med = new Medicine(rs.getString("medicine_name"),rs.getInt("nb_of_tablets"),rs.getInt("date_take"),rs.getInt("nb_of_tablets_one_time"),rs.getDate("date_of_first_use"),rs.getDate("date_of_last_use"));
+                String name = rs.getString("medicine_name");
+                int nbTab = rs.getInt("nb_of_tablets");
+                int dTake = rs.getInt("date_take");
+                int nbTabOneTime = rs.getInt("nb_of_tablets_one_time");
+                Date dateFirst = new Date(rs.getTimestamp("date_of_first_use").getTime());
+                Date dateLast = new Date(rs.getTimestamp("date_of_last_use").getTime());
+
+                Medicine med = new Medicine(name,nbTab,dTake,nbTabOneTime,dateFirst,dateLast);
                 medicinesList.add(med);
             }
             return medicinesList;
@@ -166,16 +177,27 @@ public class DataBaseController {
         }
         return medicinesList;
     }
-    public static void updateMedicine(String login, String nameMedicine, Date dateOfLastUse, int nbOfTablets){
+    public static void updateMedicine(ArrayList<Medicine>listMedicines){
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         Connection connection = null;
-        Statement stmt = null;
         try {
             Class.forName(JDBC_DRIVER);
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
-            stmt = connection.createStatement();
-            stmt.executeUpdate("UPDATE medicine.medicines SET date_of_last_use = '"+dateOfLastUse+"',nb_of_tablets = '"+nbOfTablets+"' WHERE (select id_user from medicine.users where login='" +login+ "')=medicines.id_user AND medicine_name = '"+nameMedicine+"'");
+            String sql = "UPDATE medicine.medicines SET medicine_name =?,nb_of_tablets=?,date_take=?,nb_of_tablets_one_time=?,date_of_first_use=?,date_of_last_use=?" +
+                    "WHERE id_user = (select id_user from medicine.users where login='" +login+ "');";
+
+            PreparedStatement pr = connection.prepareStatement(sql);
+            for(int i = 0; i<listMedicines.size(); i++){
+                pr.setString(1,listMedicines.get(i).getNameMedicine());
+                pr.setInt(2,listMedicines.get(i).getNrOfTablets());
+                pr.setInt(3,listMedicines.get(i).getDateTakeMed());
+                pr.setInt(4,listMedicines.get(i).getNrOfTabletsOneTime());
+                pr.setTimestamp(5, new  Timestamp(listMedicines.get(i).getFirstTakeMedicine().getTime()));
+                pr.setTimestamp(6, new Timestamp(listMedicines.get(i).getDateOfLastUse().getTime()));
+                pr.executeUpdate();
+            }
+
 
         } catch (Exception e) {
             e.printStackTrace();

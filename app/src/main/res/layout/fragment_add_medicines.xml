@@ -157,7 +157,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nrOfTabET" />
 
     <Button
-        android:id="@+id/confirmButton"
+        android:id="@+id/confirmDataMedButton"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="20dp"
